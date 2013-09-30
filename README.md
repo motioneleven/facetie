@@ -1,6 +1,6 @@
-# Facetie
+# Facétie
 
-TODO: Write a gem description
+Adds a Presenter for Sunspot::Facet with a quick helper facet_item for your views.
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+`<%= facet_item(facet, :c) %>`
 
 ## Contributing
 
