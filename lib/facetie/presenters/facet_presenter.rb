@@ -2,14 +2,15 @@ class FacetPresenter
 
   include ActionView::Helpers::TagHelper
   include ActionView::Helpers::UrlHelper
+  include ActionView::Context
 
-  attr_accessor :facet, :filter, :url, :params, :options
+  attr_accessor :view, :facet, :filter, :params, :options
 
-  def initialize facet, filter, url, params, options
+  def initialize view, facet, filter, options={}
+    @view = view
     @facet = facet
     @filter = filter
-    @url = url
-    @params = params
+    @params = view.params.symbolize_keys
     @options = options
   end
 
@@ -57,7 +58,7 @@ class FacetPresenter
   end
 
   def facet_link_tag
-    link_to(text, Rails.application.routes.url_helpers.send(url, params.merge(filter => value)), class: 'facet-link')
+    link_to(text, view.url_for(params.merge(filter => value)), class: 'facet-link')
   end
 
 end
