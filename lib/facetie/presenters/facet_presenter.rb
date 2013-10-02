@@ -48,7 +48,7 @@ class FacetPresenter
 
   def facet_remove_tag
     content_tag(:span, class: 'facet-remove') do
-      link_to(icon_tag('remove'), Rails.application.routes.url_helpers.send(url, params.merge(filter => nil)), class: 'facet-link')
+      link_to(content_tag(:i, nil, class: 'icon-remove'), view.url_for(params.merge(filter => nil)), class: 'facet-link')
     end
   end
 
