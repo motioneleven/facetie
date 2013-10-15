@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-`<%= facet_item(facet, :c) %>`
+`<%= facet_item(self, facet, :c) %>`
 
 ## Contributing
 
