@@ -15,8 +15,7 @@ class FacetPresenter
   end
 
   def render
-    facet = (active? ? selected_facet_item : facet_item_link)
-    content_tag(:li, facet, class: 'facet-item')
+    raise NotImplementedError
   end
 
   protected
@@ -33,12 +32,6 @@ class FacetPresenter
     @value ||= options.fetch(:value, facet.value)
   end
 
-  private
-
-  def active?
-    params[filter] == value
-  end
-
   def selected_facet_item
     facet_remove_tag + text
   end
@@ -47,18 +40,8 @@ class FacetPresenter
     facet_count_tag + facet_link_tag
   end
 
-  def facet_remove_tag
-    content_tag(:span, class: 'facet-remove') do
-      link_to(content_tag(:i, nil, class: 'icon-remove'), view.url_for(params.merge(filter => nil)), class: 'facet-link')
-    end
-  end
-
   def facet_count_tag
     content_tag(:span, count, class: 'badge')
-  end
-
-  def facet_link_tag
-    link_to(text, view.url_for(params.merge(filter => value)), class: 'facet-link')
   end
 
 end

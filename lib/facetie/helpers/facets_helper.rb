@@ -3,7 +3,11 @@ module Facetie
     module FacetsHelper
 
       def facet_item(view, facet, filter, options={})
-        FacetPresenter.new(view, facet, filter, options).render
+        if options[:multiple]
+          Facets::MultiplePresenter.new(view, facet, filter, options).render
+        else
+          Facets::SinglePresenter.new(view, facet, filter, options).render
+        end
       end
 
     end
