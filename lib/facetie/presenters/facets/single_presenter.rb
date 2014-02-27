@@ -13,12 +13,12 @@ module Facets
     end
 
     def facet_link_tag
-      link_to(text, view.url_for(params.merge(filter => value)), class: 'facet-link')
+      link_to(text, url(params.merge(filter => value)), class: 'facet-link')
     end
 
     def facet_remove_tag
       content_tag(:span, class: 'facet-remove') do
-        link_to(content_tag(:i, nil, class: 'icon-remove'), view.url_for(params.merge(filter => nil)), class: 'facet-link')
+        link_to(content_tag(:i, nil, class: 'icon-remove'), url(params.merge(filter => nil)), class: 'facet-link')
       end
     end
 

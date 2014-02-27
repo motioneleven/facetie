@@ -10,7 +10,7 @@ class FacetPresenter
     @view = view
     @facet = facet
     @filter = filter
-    @params = view.params.symbolize_keys
+    @params = view.params.symbolize_keys.reject{|k,v| [:controller, :action].include?(k)}
     @options = options
   end
 
@@ -19,6 +19,14 @@ class FacetPresenter
   end
 
   protected
+
+  def path *args
+    @path ||= options.fetch(:path) { :url_for }
+  end
+
+  def url args
+    view.send(path, args)
+  end
 
   def text
     @text ||= options.fetch(:text, facet.value)
